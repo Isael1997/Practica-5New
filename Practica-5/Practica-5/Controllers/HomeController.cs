@@ -32,12 +32,53 @@ namespace Practica_5.Controllers
             return View();
         }
 
-
-        public ActionResult Consultas()
+        public ActionResult Consulta1()
         {
-            return View(db.Students.ToList());
+            var lista = from datos in db.Students select datos;
+            lista = lista.Where(a => a.Nombre.Equals("Yarlin Alejandro"));
+
+            return View(lista);
+        }
+        public ActionResult Consulta2()
+        {
+            var lista = from datos in db.Students select datos;
+            lista = lista.Where(a => a.Nombre.Equals("Ronald Sanchez"));
+
+            return View(lista);
         }
 
+        
+        
+        public ActionResult Consultas(Students name)
+        {
+
+
+            var lista = from datos in db.Students select datos;
+            
+        /*
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("BusquedaConsulta");
+            }
+            else if (name.estudiantes.Equals("Yarlin")){
+
+                
+                lista = lista.Where(a => a.Nombre.Equals("Yarlin Alejandro"));
+
+            }
+            else if (ModelState.Equals("Ronald"))
+            {
+            
+                lista = lista.Where(a => a.Nombre.Equals("Ronald Sanchez"));
+            }
+            
+    */
+            return View(lista);
+            
+        }
+        
+    
         public ActionResult Lector()
         {
             return View();

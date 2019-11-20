@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Practica_5.Models.Students>
+
+@{
+    ViewBag.Title = "Consulta2";
+}
+
+<h2>Ronald Isael Sanchez Morla</h2>
+
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Materias)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Materias)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<a href="../Home/BusquedaConsulta" class="btn btn-primary">Atras</a>

@@ -19,6 +19,23 @@ namespace Practica_5.Controllers
         {
             return View(db.agenda.ToList());
         }
+        [HttpPost]
+        public ActionResult Index(string Busqueda)
+        {
+            var lista = from datos in db.agenda select datos;
+
+            if (string.IsNullOrEmpty(Busqueda))
+            {
+                return View(db.agenda.ToList());
+            }
+            else
+            {
+                lista = lista.Where(a => a.nombre.Equals(Busqueda));
+
+                return View(lista);
+            }
+
+        }
 
         // GET: Agenda/Details/5
         public ActionResult Details(int? id)

@@ -225,6 +225,8 @@
     <Content Include="Views\Home\Consultas.cshtml" />
     <Content Include="Views\Home\Lector.cshtml" />
     <Content Include="Views\Home\Acercade.cshtml" />
+    <Content Include="Views\Home\Consulta1.cshtml" />
+    <Content Include="Views\Home\Consulta2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,5 +18,12 @@ namespace Practica_5.Models
         public string Nombre { get; set; }
         public string Carrera { get; set; }
         public string Materias { get; set; }
+
+        public  Estudiantes estudiantes { get; set; }
+    }
+
+    public enum Estudiantes
+    {
+        Ronald, Yarlin 
     }
 }
