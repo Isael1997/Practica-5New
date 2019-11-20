@@ -15,9 +15,25 @@ namespace Practica_5.Controllers
         private ConexionDBTareas db = new ConexionDBTareas();
 
         // GET: Eventos
-        public ActionResult Index()
+        public ActionResult Index(string Busqueda)
         {
+
+            var lista = from datos in db.eventos select datos;
+
+            if (string.IsNullOrEmpty(Busqueda))
+            {
+                return View(db.eventos.ToList());
+            }
+            else if (Busqueda != null)
+            {
+                lista = lista.Where(a => a.evento.Equals(Busqueda));
+
+                return View(lista);
+            }
+
             return View(db.eventos.ToList());
+
+
         }
 
         // GET: Eventos/Details/5
