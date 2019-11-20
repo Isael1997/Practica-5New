@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Practica_5.Models.Students>
+
+@{
+    ViewBag.Title = "Consultas";
+}
+
+<h2>Consulta de Asignatura</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materias)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Materias)
+            </td>
+
+        </tr>
+    }
+
+</table>
