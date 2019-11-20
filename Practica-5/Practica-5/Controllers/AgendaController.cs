@@ -15,27 +15,26 @@ namespace Practica_5.Controllers
         private ConexionDBTareas db = new ConexionDBTareas();
 
         // GET: Agenda
-        public ActionResult Index()
-        {
-            return View(db.agenda.ToList());
-        }
-        [HttpPost]
         public ActionResult Index(string Busqueda)
         {
+
             var lista = from datos in db.agenda select datos;
 
             if (string.IsNullOrEmpty(Busqueda))
             {
                 return View(db.agenda.ToList());
             }
-            else
+            else if (Busqueda != null)
             {
                 lista = lista.Where(a => a.nombre.Equals(Busqueda));
 
                 return View(lista);
             }
 
+            return View(db.agenda.ToList());
+
         }
+     
 
         // GET: Agenda/Details/5
         public ActionResult Details(int? id)
