@@ -1,7 +1,39 @@
-﻿
+﻿@using Practica_5.Models
+
+@model IEnumerable<ModeloLector>
+
 @{
     ViewBag.Title = "Lector";
 }
 
 <h2>Lector de Archivos</h2>
 
+<body>
+    @using(Html.BeginForm("Lector", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="postedFile" />
+        <input type="submit" value="importar" />
+    }
+
+    @if (Model.Count() > 0)
+    {
+        <hr />
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Pais</th>
+            </tr>
+            @foreach(ModeloLector clientes in Model)
+            {
+                <tr>
+                    <td>@clientes.Id</td>
+                    <td>@clientes.Nombre</td>
+                    <td>@clientes.Pais</td>
+                </tr>
+            }
+        </table>
+    }
+
+
+</body>

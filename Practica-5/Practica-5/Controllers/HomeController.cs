@@ -9,6 +9,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Net;
 
+
+using Practica_5.Models;
+using System.IO;
+
 namespace Practica_5.Controllers
 {
     public class HomeController : Controller
@@ -81,8 +85,43 @@ namespace Practica_5.Controllers
     
         public ActionResult Lector()
         {
-            return View();
+            return View(new List<ModeloLector>());
         }
+        [HttpPost]
+        public ActionResult Lector(HttpPostedFileBase postedFile)
+        {
+            List<ModeloLector> clientes = new List<ModeloLector>();
+            string rutafile = string.Empty;
+            if(postedFile != null)
+            {
+                string ruta = Server.MapPath("..App_Data/Files/");
+                if (!Directory.Exists(ruta))
+                {
+                    Directory.CreateDirectory(ruta);
+                }
+                rutafile = ruta + Path.GetFileName(postedFile.FileName);
+                string extension = Path.GetExtension(postedFile.FileName);
+                postedFile.SaveAs(rutafile);
+
+                string csvData = System.IO.File.ReadAllText(rutafile);
+                foreach(string row in csvData.Split('\n'))
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    {
+                        clientes.Add(new ModeloLector {
+                            Id=row.Split(',')[0],
+                            Nombre=row.Split(',')[1],
+                            Pais=row.Split(',')[2]
+                        });
+                    }
+                }
+
+            }
+
+            return View(clientes);
+        }
+
+
 
         public ActionResult Acercade()
         {
