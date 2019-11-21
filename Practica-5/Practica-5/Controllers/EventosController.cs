@@ -17,7 +17,6 @@ namespace Practica_5.Controllers
         // GET: Eventos
         public ActionResult Index(string Busqueda)
         {
-
             var lista = from datos in db.eventos select datos;
 
             if (string.IsNullOrEmpty(Busqueda))
@@ -26,13 +25,12 @@ namespace Practica_5.Controllers
             }
             else if (Busqueda != null)
             {
-                lista = lista.Where(a => a.evento.Equals(Busqueda));
+                lista = lista.Where(a => a.evento.Contains(Busqueda));
 
                 return View(lista);
             }
 
             return View(db.eventos.ToList());
-
 
         }
 
